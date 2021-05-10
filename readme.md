@@ -1,6 +1,6 @@
 ### API REST on NodeJS
 
 #### Start Server:
-node start || yarn start
+npm start
 
 Running on localhost:3001
