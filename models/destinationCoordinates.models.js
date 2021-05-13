@@ -11,4 +11,4 @@ let dCoordinatesSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('dCoordinates', dCoordinatesSchema)
+module.exports = mongoose.model('dCoordinates', dCoordinatesSchema);

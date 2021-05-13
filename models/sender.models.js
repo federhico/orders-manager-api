@@ -12,4 +12,4 @@ let senderSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('sender', senderSchema)
+module.exports = mongoose.model('sender', senderSchema);

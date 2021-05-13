@@ -20,7 +20,13 @@ let ordersSchema = new Schema({
         type: String
     },
     sender: {
-        type: senderModels
+        id:{
+            type: Number,
+            required:[true, 'ID is a Mandatory Field']
+        } ,
+        name: {
+            type: String
+        }
         
     },
     destinationAddress: {
@@ -33,7 +39,13 @@ let ordersSchema = new Schema({
         type: String
     },
     destinationCoordinates: {
-       type: destinationCoordinatesModels
+        lat: {
+            type: Number
+        } ,
+        long: {
+            type: Number
+        }
+        
     },
     price: {
         type: Number
@@ -52,3 +64,5 @@ let ordersSchema = new Schema({
     }
 
 })
+
+module.exports = mongoose.model('Orders',ordersSchema, 'Orders');
