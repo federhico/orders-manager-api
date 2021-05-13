@@ -24,5 +24,5 @@ app.listen(port, () =>{
 IMPORTAMOS LAS RUTAS
 =============================================*/
 
-app.use(require('./routes/heartbeat.route'))
+app.use(require('./routes/heartbeat.route'));
 
