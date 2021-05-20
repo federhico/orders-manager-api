@@ -6,6 +6,8 @@ UBICAMOS LOS REQUERIMIENTOS
 const express = require('express');
 const bodyParser = require('body-parser');
 
+
+
 const mongoose = require('mongoose');
 const app = express()
 const port = process.env.PORT || 3001
@@ -36,6 +38,8 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0.g4u4c.mongodb.net/orders-ma
 });
 
 
+
+
 /*=============================================
 DEFAULT CONSOLE PORT
 =============================================*/
@@ -52,4 +56,5 @@ IMPORT ROUTES
 
 app.use(require('./routes/heartbeat.route'));
 app.use(require('./routes/orders.routes'))
+
 
