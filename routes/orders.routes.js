@@ -19,7 +19,9 @@ CREAMOS LAS RUTAS HTTP
 
 app.get('/orders', Orders.getOrders);
 app.post('/orders',Orders.postOrder);
-app.get('/orders/:id',Orders.getOrderId)
+app.get('/orders/:id',Orders.getOrderId);
+app.put('/orders',Orders.updateOrder);
+app.delete('/orders/:id', Orders.deleteOrder)
 
 /*=============================================
 EXPORTAMOS LA RUTA
