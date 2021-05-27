@@ -1,28 +1,61 @@
 const ordersModels = require('../models/orders.models');
 const Orders = require('../models/orders.models');
+var mongoose = require('mongoose');
 
 /*=============================================
 FUNCIÓN GET
 =============================================*/
 
-let getOrders = (req,res) =>{
+let getOrders = (req, res) => {
     Orders.find({})
-    .exec((err,data) => {
-        if(err){
+        .exec((err, data) => {
+            if (err) {
+                return res.json({
+                    status: 500,
+                    message: 'Error on getOrders'
+                })
+            }
+
             return res.json({
-                status: 500,
-                message: 'Error on getOrders'
+                status: 200,
+                error: null,
+                data,
+
             })
-        }
-        
+        })
+};
+
+let getOrderId = (req, res) => {
+    let id = new mongoose.Types.ObjectId(req.params.id);
+    console.log(id);  
+    
+    Orders.find({_id: id}, function (err, data) {        
+	    if(err){
+			return res.json({
+				status: 500,
+				mensaje:"Error in DB",
+				err			
+			})
+		}
+		
+
+		if(!data){           
+			return res.json({
+				status: 400,
+				mensaje:"No Match found"				
+			})	
+		}
+
         return res.json({
             status: 200,
-            error: null,
-            data,
-            
-        })
+            data				
+        })	
     })
 };
+
+
+
+
 
 
 let postOrder = (req, res) => {
@@ -43,18 +76,24 @@ let postOrder = (req, res) => {
         weight: body.weight,
         messureUnit: body.messureUnit,
         createdOn: body.createdOn,
-    });   
+    });
 
-    
+
     console.log(order);
     order.save((err, orderStored) => {
-        if (err) res.status(500).send({message: `Cant Save in DB` + err});
-        else{
-            res.status(200).send({order: orderStored})
-        }        
+        if (err) res.status(500).send({
+            message: `Cant Save in DB` + err
+        });
+        else {
+            res.status(200).send({
+                order: orderStored
+            })
+        }
     })
-    
+
 }
+
+
 
 
 
@@ -65,6 +104,6 @@ EXPORTAMOS LAS FUNCIONES DEL CONTROLADOR
 
 module.exports = {
     getOrders,
-    postOrder
+    postOrder,
+    getOrderId
 }
-

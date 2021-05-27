@@ -7,7 +7,7 @@ let Schema = mongoose.Schema;
 let ordersSchema = new Schema({
 
     _id: {
-        type: String
+        type: mongoose.Types.ObjectId
     },
     title: {
         type: String
