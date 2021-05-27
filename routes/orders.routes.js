@@ -18,6 +18,7 @@ CREAMOS LAS RUTAS HTTP
 =============================================*/
 
 app.get('/orders', Orders.getOrders);
+app.post('/orders',Orders.postOrder)
 
 /*=============================================
 EXPORTAMOS LA RUTA

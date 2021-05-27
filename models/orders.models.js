@@ -6,9 +6,8 @@ let Schema = mongoose.Schema;
 
 let ordersSchema = new Schema({
 
-    id: {
-        type: String,
-        required: [true, 'ID is a mandatory field']
+    _id: {
+        type: String
     },
     title: {
         type: String

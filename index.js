@@ -56,7 +56,7 @@ app.listen(port, () =>{
 IMPORT ROUTES
 =============================================*/
 app.use(cors())
-app.use(jwtCheck)
+// app.use(jwtCheck)
 app.use(require('./routes/heartbeat.route'));
 app.use(require('./routes/orders.routes'))
 
