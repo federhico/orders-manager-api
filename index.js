@@ -7,8 +7,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 
-
-
 const mongoose = require('mongoose');
 const { jwtCheck } = require('./middleware/authentication');
 const app = express()
@@ -40,8 +38,6 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0.g4u4c.mongodb.net/orders-ma
 });
 
 
-
-
 /*=============================================
 DEFAULT CONSOLE PORT
 =============================================*/
@@ -59,5 +55,4 @@ app.use(cors())
 // app.use(jwtCheck)
 app.use(require('./routes/heartbeat.route'));
 app.use(require('./routes/orders.routes'))
-
 
