@@ -37,11 +37,13 @@ let getOrderId = (req, res) => {
 		if(!data){           
 			return res.json({
 				status: 400,
-				mensaje:"No Match found"				
+				mensaje:"No Match found",
+                data				
 			})	
 		}
         return res.json({
             status: 200,
+            error: null,
             data				
         })	
     })
@@ -99,7 +101,8 @@ let updateOrder = (req,res) => {
 		if(!data){           
 			return res.json({
 				status: 400,
-				mensaje:"No Match found"				
+				mensaje:"No Match found",
+                data				
 			})	
 		}
     
@@ -131,6 +134,7 @@ let updateOrder = (req,res) => {
 
             return res.json({
                 satus: 200,
+                error: null,
                 data2                
             })            
         })
@@ -150,7 +154,8 @@ let deleteOrder = (req,res) => {
 		if(!data){           
 			return res.json({
 				status: 400,
-				mensaje:"No Match found"				
+				mensaje:"No Match found",
+                data				
 			})	
 		}
 
@@ -182,6 +187,7 @@ let deleteOrder = (req,res) => {
 
             return res.json({
                 satus: 200,
+                error: null,
                 data2                
             })            
         })
