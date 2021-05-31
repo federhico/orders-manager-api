@@ -5,8 +5,10 @@ UBICAMOS LOS REQUERIMIENTOS
 =============================================*/
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
 const mongoose = require('mongoose');
+const { jwtCheck } = require('./middleware/authentication');
 const app = express()
 const port = process.env.PORT || 3001
 
@@ -49,7 +51,8 @@ app.listen(port, () =>{
 /*=============================================
 IMPORT ROUTES
 =============================================*/
-
+app.use(cors())
+app.use(jwtCheck)
 app.use(require('./routes/heartbeat.route'));
 app.use(require('./routes/orders.routes'))
 
