@@ -1,4 +1,3 @@
-const ordersModels = require('../models/orders.models');
 const Orders = require('../models/orders.models');
 var mongoose = require('mongoose');
 
@@ -87,6 +86,7 @@ let postOrder = (req, res) => {
 
 let updateOrder = (req,res) => {
     let body = req.body;
+    console.log('Putting')
     let id = new mongoose.Types.ObjectId(body._id);
     console.log(id);
     Orders.find({_id: id}, function (err,data) {
