@@ -18,10 +18,12 @@ let ordersSchema = new Schema({
     status: {
         type: String
     },
+    senderID: {
+        type: Number
+    },
     sender: {
         id:{
-            type: Number,
-            required:[true, 'ID is a Mandatory Field']
+            type: Number
         } ,
         name: {
             type: String
@@ -60,6 +62,9 @@ let ordersSchema = new Schema({
     },
     createdOn: {
         type: String
+    },
+    favourite: {
+        type: Boolean
     }
 
 })

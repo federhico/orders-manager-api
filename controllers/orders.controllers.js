@@ -6,15 +6,15 @@ FUNCIÓN GET
 =============================================*/
 
 let getOrders = (req, res) => {
-    Orders.find({})
-        .exec((err, data) => {
+    let senderID = req.user.sub.split('|')[1];
+    Orders.find({senderID})
+        .exec((err, data) => {           
             if (err) {
                 return res.json({
                     status: 500,
                     message: 'Error on getOrders'
                 })
-            }
-
+            }            
             return res.json({
                 status: 200,
                 error: null,
@@ -53,12 +53,17 @@ let getOrderId = (req, res) => {
 let postOrder = (req, res) => {
     // Obtener el cuerpo
     let body = req.body;
+    let senderID = req.user.sub.split('|')[1]
     let order = new Orders({
         _id: null,
         title: body.title,
         description: body.description,
         status: body.status,
-        sender: body.sender,
+        senderID: senderID,
+        sender: {
+            id: senderID,
+            name: body.sender.name
+        },
         destinationAddress: body.destinationAddress,
         destinationCity: body.destinationCity,
         destinationCountry: body.destinationCountry,
@@ -69,9 +74,6 @@ let postOrder = (req, res) => {
         messureUnit: body.messureUnit,
         createdOn: body.createdOn,
     });
-
-
-    console.log(order);
     order.save((err, orderStored) => {
         if (err) res.status(500).send({
             message: `Cant Save in DB` + err
@@ -105,12 +107,13 @@ let updateOrder = (req,res) => {
                 data				
 			})	
 		}
-    
+        
         let order = new Orders({
             _id: id,
             title: body.title,
             description: body.description,
             status: body.status,
+            senderID: body.senderID,
             sender: body.sender,
             destinationAddress: body.destinationAddress,
             destinationCity: body.destinationCity,
@@ -121,6 +124,7 @@ let updateOrder = (req,res) => {
             weight: body.weight,
             messureUnit: body.messureUnit,
             createdOn: body.createdOn,
+            favourite: body.favourite
         });        
 
         Orders.findOneAndUpdate({_id: order._id}, order, {new: true , runValidators: true}, (err2,data2) => {
@@ -164,6 +168,7 @@ let deleteOrder = (req,res) => {
             title: data.title,
             description: data.description,
             status: 'Deleted',
+            senderID: body.senderID,
             sender: data.sender,
             destinationAddress: data.destinationAddress,
             destinationCity: data.destinationCity,
@@ -210,5 +215,6 @@ module.exports = {
     postOrder,
     getOrderId,
     updateOrder,
-    deleteOrder
+    deleteOrder,
+
 }
